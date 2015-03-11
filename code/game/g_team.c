@@ -1044,7 +1044,10 @@ void Team_DroppedFlagThink(gentity_t *ent) {
 		team = TEAM_FREE;
 	}
 
+	/*Tell everyone the flag returned*/
 	Team_ReturnFlagSound( Team_ResetFlag( team ), team );
+	PrintMsg(NULL, "The %s flag has returned!\n", TeamName(team));
+
 	// Reset Flag will delete this entity
 }
 

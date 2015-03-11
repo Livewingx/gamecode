@@ -376,11 +376,21 @@ void CheckVote( void ) {
 			//Let pass if there was at least twice as many for as against
 			if ( level.voteYes > level.voteNo*2 ) {
 				trap_SendServerCommand( -1, "print \"Vote passed. At least 2 of 3 voted yes\n\"" );
+				//everything is over we have a restart ... let people know it!
+				if ( level.isVoteWithRestart )
+				{
+					trap_SendServerCommand( -1, "cp \"Vote ^2passed^7.\n\"" );
+				}
 				level.voteExecuteTime = level.time + 3000;
 			} else {
 				//Let pass if there is more yes than no and at least 2 yes votes and at least 30% yes of all on the server
 				if ( level.voteYes > level.voteNo && level.voteYes >= 2 && (level.voteYes*10)>(level.numVotingClients*3) ) {
 					trap_SendServerCommand( -1, "print \"Vote passed. More yes than no.\n\"" );
+					//everything is over we have a restart ... let people know it!
+					if ( level.isVoteWithRestart )
+					{
+						trap_SendServerCommand( -1, "cp \"Vote ^2passed^7.\n\"" );
+					}
 					level.voteExecuteTime = level.time + 3000;
 				} else
 					trap_SendServerCommand( -1, "print \"Vote failed.\n\"" );
@@ -393,6 +403,11 @@ void CheckVote( void ) {
 		if ( level.voteYes > (level.numVotingClients)/2 ) {
 			// execute the command, then remove the vote
 			trap_SendServerCommand( -1, "print \"Vote passed.\n\"" );
+			//everything is over we have a restart ... let people know it!
+			if ( level.isVoteWithRestart )
+			{
+				trap_SendServerCommand( -1, "cp \"Vote ^2passed^7.\n\"" );
+			}
 			level.voteExecuteTime = level.time + 3000;
 		} else if ( level.voteNo >= (level.numVotingClients)/2 ) {
 			// same behavior as a timeout

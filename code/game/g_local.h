@@ -478,6 +478,7 @@ typedef struct {
 	int			numVotingClients;		// set by CountVotes
         int             voteKickClient;                         // if non-negative the current vote is about this client.
         int             voteKickType;                           // if 1 = ban (execute ban)
+	int		isVoteWithRestart; 			//does the vote initialize a map/client restart?
 
 	// team voting state
 	char		teamVoteString[2][MAX_STRING_CHARS];
