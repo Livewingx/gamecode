@@ -393,16 +393,16 @@ void CheckVote( void ) {
 					}
 					level.voteExecuteTime = level.time + 3000;
 				} else
-					trap_SendServerCommand( -1, "print \"Vote failed.\n\"" );
+					trap_SendServerCommand( -1, "print \"Vote ^1failed^7.\n\"" );
 			}
 		} else {
-			trap_SendServerCommand( -1, "print \"Vote failed.\n\"" );
+			trap_SendServerCommand( -1, "print \"Vote ^1failed^7.\n\"" );
 		}
 	} else {
 		// ATVI Q3 1.32 Patch #9, WNF
 		if ( level.voteYes > (level.numVotingClients)/2 ) {
 			// execute the command, then remove the vote
-			trap_SendServerCommand( -1, "print \"Vote passed.\n\"" );
+			trap_SendServerCommand( -1, "print \"Vote ^2passed^7.\n\"" );
 			//everything is over we have a restart ... let people know it!
 			if ( level.isVoteWithRestart )
 			{
@@ -411,7 +411,7 @@ void CheckVote( void ) {
 			level.voteExecuteTime = level.time + 3000;
 		} else if ( level.voteNo >= (level.numVotingClients)/2 ) {
 			// same behavior as a timeout
-			trap_SendServerCommand( -1, "print \"Vote failed.\n\"" );
+			trap_SendServerCommand( -1, "print \"Vote ^1failed^7.\n\"" );
 		} else {
 			// still waiting for a majority
 			return;
