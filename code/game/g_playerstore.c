@@ -84,7 +84,7 @@ void PlayerStore_store(const char* guid, playerState_t ps) {
     for(i=0;i<MAX_PLAYERS_STORED;i++) {
         if(playerstore[i].age < lowestAge) {
             place2store = i;
-            lowestAge = playerstore[i].age;
+            lowestAge = playerstore[i].age; //FIXME check that the lowest age's player is not playing anymore
         }
     }
 
